@@ -79,6 +79,20 @@ namespace NorthwindAPI.Controllers
             return Ok();
 
         }
+
+        [HttpDelete("id")]
+        public IActionResult Delete(int id) {
+            var category = _context.Categories.SingleOrDefault(c => c.CategoryId == id);
+
+            if (category == null) { return NotFound(); }
+
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+
     }
 
    
