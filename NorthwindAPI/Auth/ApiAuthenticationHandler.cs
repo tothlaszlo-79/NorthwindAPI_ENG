@@ -15,7 +15,7 @@ namespace NorthwindAPI.Auth
         {
             if (!Request.Headers.TryGetValue("X-Api-Key", out var apiKeyHeaderValues))
             {
-                if (!Request.Query.TryGetValue("ApiKey", out apiKeyHeaderValues))
+                if (!Request.Query.TryGetValue("APIKey", out apiKeyHeaderValues))
                 {
                     return AuthenticateResult.NoResult();
                 }
