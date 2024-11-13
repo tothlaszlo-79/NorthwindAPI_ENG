@@ -120,5 +120,22 @@ namespace NorthwindAPI.Controllers
         {
             return _context.Products.Any(e => e.ProductId == id);
         }
+
+        //create a GET by category id and product id
+        [HttpGet("category/{categoryId}/product/{productId}")]
+        public async Task<ActionResult<Product>> GetProductByCategoryAndProductId(short categoryId, short productId)
+        {
+            var product = await _context.Products
+                .Where(p => p.CategoryId == categoryId && p.ProductId == productId)
+                .FirstOrDefaultAsync();
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return product;
+        }
+
     }
 }
